@@ -9,6 +9,10 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var products = require('./routes/products');
 
+var login = require('./routes/login');
+
+var register = require('./routes/register');
+
 //mockApi.json
 var api = require('./api/mockApi.json');
 //iterate array from object
@@ -19,7 +23,7 @@ var apiArray = Object.keys(api).map(function(value){
 
 var app = express();
 
-
+app.use('/static',express.static(__dirname+'/public'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -31,8 +35,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));//serve static files
+
 app.use('/', index);
 app.use('/products', products);
+app.use('/login', login);
+app.use('/register', register);
+
 
 
 // catch 404 and forward to error handler
