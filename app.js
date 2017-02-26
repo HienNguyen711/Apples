@@ -11,31 +11,41 @@ var GitHubStrategy = require('passport-github').Strategy;
 var session = require('express-session');
 var MongoStore= require('connect-mongo')(session);
 var User = require('./models/user');
+//mockApi.json
+var api = require('./api/mockApi.json');
+//iterate array from object
+var apiArray = Object.keys(api).map(function(value){
+  return api[value]
+});
+
+function generateOrFindUser(accessToken, refreshToken, profile, done){
+  if(profile.emails[0]) {
+    User.findOneAndUpdate(
+      { email: profile.emails[0] },
+      {
+        name: profile.displayName || profile.username,
+        email: profile.emails[0].value,
+        photo: profile.photos[0].value
+      },
+      {
+        upsert: true
+      },
+    done
+  );
+  } else {
+    var noEmailError = new Error("Your email privacy settings prevent you from signing into Bookworm.");
+    done(noEmailError, null);
+  }
+}
 //github strategy
 passport.use(new GitHubStrategy({
-	clientID: 'da2c3dd80ad08ab469cd',
-	clientSecret: '5b28b468b71139f3146a26904ec2723c6118bdad',
-	callbackURL: "http:/localhost:3000/auth/github/return"
+    clientID: '2fd7756d2a349ce05bc3',
+    clientSecret: '2843e4d16da19c2fe1519957f388d3a8f923bb53',
+    callbackURL: 'http://localhost:3000/auth/github/return'
   },
-  function(accessToken, refreshToken, profile, done){
-	  if(profile.emails[0]) {
-      User.findOneAndUpdate(
-        { email: profile.emails[0] },
-        {
-          name: profile.displayName || profile.username,
-          email: profile.emails[0].value,
-          photo: profile.photos[0].value
-        },
-	      {
-	        upsert: true
-        },
-  done
-  );
-} else {
-	var noEmailError = new Error("Your email privacy settings prevent you from signing into Bookworm.");
-	done(noEmailError, null);
-  }
-}));
+  generateOrFindUser)
+);
+
 
 //serialize
 passport.serializeUser(function(user, done){
@@ -56,14 +66,9 @@ var register = require('./routes/register');
 //auth route
 var auth = require('./routes/auth');
 var profile = require('./routes/profile');
+var api = require('./routes/api');
 
 
-//mockApi.json
-var api = require('./api/mockApi.json');
-//iterate array from object
-var apiArray = Object.keys(api).map(function(value){
-  return api[value]
-});
 
 
 var app = express();
@@ -114,6 +119,7 @@ app.use('/register', register);
 app.use('/auth', auth);
 
 app.use('/profile', profile);
+app.use('/api', api);
 
 
 
@@ -137,8 +143,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000,function(){
-  console.log('Running on port 3000');
-});
+
+module.exports = app;
+
 
 
