@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
 var session = require('express-session');
+var MongoStore= require('connect-mongo')(session);
 var User = require('./models/user');
 //github strategy
 passport.use(new GitHubStrategy({
@@ -54,6 +55,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 //auth route
 var auth = require('./routes/auth');
+var profile = require('./routes/profile');
+
 
 //mockApi.json
 var api = require('./api/mockApi.json');
@@ -109,6 +112,8 @@ app.use('/products', products);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/auth', auth);
+
+app.use('/profile', profile);
 
 
 

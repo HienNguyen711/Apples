@@ -2,12 +2,25 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-//get /auth/login/github
+//GET /auth/login/github
+router.get('/login/github',
+  passport.authenticate('github'));
+
+//GET /auth/github/return
+router.get('/github/return',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect to the profile page.
+    res.redirect('/profile');
+  });
 
 
 
+//GET /auth/logout
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 
-
-
-//get /auth/logout
+module.exports = router;
