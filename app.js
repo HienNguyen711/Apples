@@ -5,6 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var User = require('./models/user');
 
 var index = require('./routes/index');
 var products = require('./routes/products');
@@ -35,6 +37,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));//serve static files
+
+//mongodb connection
+mongoose.connect("mongodb://localhost:27017/apples");
+var db = mongoose.connection;
+// mongo error
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+
 
 app.use('/', index);
 app.use('/products', products);
