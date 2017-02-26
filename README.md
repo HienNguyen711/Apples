@@ -1,13 +1,14 @@
 # Apples
-# What is it? 
+# What is it?
 <img src="demo.png">
-# Technologies I use: 
+# Technologies I use:
 + Jade(Pug) template
 + NodeJS/ExpressJS
-+ Express-generator 
-+ SCSS 
++ Express-generator
++ SCSS
 + Material design
 + OAuth with Github when login
+
 # How to install
 ```
 # clone the repo/download zip file
@@ -23,18 +24,18 @@ npm install
 
 # have nodemon run the app in one terminal tab
 # nodemon will watch for file changes in the express app
-nodemon --debug 
+nodemon --debug
 
 # run the debugger in another terminal
 # node-inspector will break the app when a break point
 # or `debugger` statement is reached in the JavaScript
-node-inspector 
+node-inspector
 # run mongod in another terminal
-mongod 
+mongod
 
 ```
 
-# Github auth 
+# Github auth
 ```
 Client ID
 da2c3dd80ad08ab469cd
