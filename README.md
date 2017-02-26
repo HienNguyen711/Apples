@@ -30,3 +30,10 @@ nodemon --debug
 node-inspector 
 ```
 
+# Github auth 
+```
+Client ID
+da2c3dd80ad08ab469cd
+Client Secret
+5b28b468b71139f3146a26904ec2723c6118bdad
+

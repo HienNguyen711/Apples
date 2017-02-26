@@ -1,0 +1,13 @@
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+
+//get /auth/login/github
+
+
+
+
+
+
+
+//get /auth/logout
