@@ -1,0 +1,59 @@
+.products.container
+	.row
+		.col-xs-6
+			h1 Products
+		.col-xs-6.filter
+			span Filter by
+			select.c-select
+				option(value='0-10') All
+				option(value='0-2') Less Than $2
+				option(value='2-3') From $2 to $3
+				option(value='3-5') From $3 to $5
+				option(value='5-10') $5 or more
+	.row
+		.col-md-3.col-sm-6.product-column
+			.product(data-product=1 data-price=4.49)
+				h3 Elevated Apples
+				h4 Starting at $4.49
+				p Seemingly gravity defying, these apples possess increased potential energy.
+				.image
+					img(src='../public/assets/images/apples_book.jpg')
+				.link
+					a Learn More
+						.link-image
+
+		.col-md-3.col-sm-6.product-column
+			.product(data-product=2 data-price=7.99)
+				h3 Gang Apples
+				h4 Starting at $7.99
+				p Raised on the street, these apples travel in groups and are unafraid of choreographed fighting.
+				.image
+					img(src='../public/assets/images/apples_bunch.jpg')
+				.link
+					a Learn More
+						.link-image
+
+		.col-md-3.col-sm-6.product-column
+			.product(data-product=3 data-price=2.49)
+				h3 Tree Apples
+				h4 Starting at $2.49
+				p Fresh from their branch with their natural new-car-smell intact.
+				.image
+					img(src='../public/assets/images/apples_tree.jpg')
+				.link
+					a Learn More
+						.link-image
+
+		.col-md-3.col-sm-6.product-column
+			.product(data-product=4 data-price=2)
+				h3 Solitary Apples
+				h4 Starting at $1.99
+				p A lonesome apple which is nervous about the future and social interactions.
+				.image
+					img(src='../public/assets/images/apples_green.jpg')
+				.link
+					a Learn More
+						.link-image
+
+// product detail modal
+include product-detail.jade

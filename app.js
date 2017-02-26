@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var products = require('./routes/products');
 
 //mockApi.json
 var api = require('./api/mockApi.json');
@@ -30,10 +30,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));//serve static files
-
+app.use(express.static(path.join(__dirname, '/public')));//serve static files
 app.use('/', index);
-app.use('/users', users);
+app.use('/products', products);
 
 
 // catch 404 and forward to error handler

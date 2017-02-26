@@ -1,0 +1,112 @@
+.banner {
+	position: relative;
+
+	.image {
+		background-image: url('../assets/images/apples_red.jpg');
+		background-position: top center;
+		background-size: cover;
+	}
+
+	.title {
+		position: absolute;
+		top: 40%;
+		width: 100%;
+		z-index: 10;
+
+		h1 {
+			color: #fff;
+			font-size: 5rem;
+			text-align: center;
+		}
+	}
+
+	.connect {
+		position: absolute;
+		bottom: 10%;
+		right: 5%;
+
+		span {
+			color: #fff;
+			margin-right: 1rem;
+			opacity: .8;
+		}
+
+		%icon {
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			margin-right: 3px;
+			background-size: 25px 25px;
+			background-repeat: no-repeat;
+			opacity: .8;
+			&:hover {
+				opacity: 1;
+				cursor: pointer;
+			}
+		}
+
+		.facebook {
+			@extend %icon;
+			background-image: url('../assets/images/fb.png');
+		}
+
+		.twitter {
+			@extend %icon;
+			background-image: url('../assets/images/twitter.png');
+		}
+
+		.pinterest {
+			@extend %icon;
+			background-image: url('../assets/images/pinterest.png');
+		}
+
+		.blog {
+			@extend %icon;
+			background-image: url('../assets/images/blog.png');
+		}
+
+		.email {
+			@extend %icon;
+			background-image: url('../assets/images/email.png');
+		}
+
+	}
+
+	@include media-breakpoint-up(xs) {
+		.title {
+			top: 10%;
+		}
+
+		.image {
+			height: 15rem;
+		}
+
+		.connect {
+			display: none;
+		}
+	}
+
+	@include media-breakpoint-up(sm) {
+		.title {
+			top: 20%;
+		}
+
+		.image {
+			height: 24rem;
+		}
+
+		.connect {
+			display: block;
+		}
+	}
+
+	@include media-breakpoint-up(md) {
+		.title {
+			top: 40%;
+		}
+
+		.image {
+			height: 25rem;
+		}
+	}
+}
