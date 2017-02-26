@@ -1,5 +1,6 @@
 # Apples
 # What is it? 
+<img src="demo.png">
 # Technologies I use: 
 + Jade(Pug) template
 + NodeJS/ExpressJS
